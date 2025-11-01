@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Order Received | Diet Swad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .checkmark-container {
+            margin: 0 auto 30px;
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+
+        .checkmark {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #4CAF50;
+            stroke-miterlimit: 10;
+            box-shadow: 0 0 0 #4CAF50;
+            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+        }
+
+        .checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #4CAF50;
+            fill: #f0fdf4;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0 0 0 60px #4CAF50;
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: #4b5563;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .success-message {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .success-message p {
+            color: #166534;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .payment-section {
+            background: #fefce8;
+            border: 2px solid #fde047;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .payment-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #854d0e;
+            margin-bottom: 16px;
+        }
+
+        .payment-section p {
+            color: #713f12;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .payment-info {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .payment-info strong {
+            color: #1a1a1a;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .upi-id {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 1.125rem;
+            color: #667eea;
+            font-weight: 600;
+            background: #f3f4f6;
+            padding: 12px;
+            border-radius: 6px;
+            word-break: break-all;
+            margin-bottom: 20px;
+        }
+
+        .amount-input-group {
+            margin-bottom: 20px;
+        }
+
+        .amount-input-group label {
+            display: block;
+            text-align: left;
+            color: #713f12;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .amount-input-group input {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.125rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .amount-input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .pay-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            width: 100%;
+        }
+
+        .pay-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .pay-button:active {
+            transform: translateY(0);
+        }
+
+        .pay-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .contact-info {
+            background: #eff6ff;
+            border: 2px solid #93c5fd;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: #1e40af;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .contact-info p {
+            color: #1e3a8a;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 24px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .payment-section {
+                padding: 20px;
+            }
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Animated Checkmark -->
+        <div class="checkmark-container">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+
+        <!-- Success Message -->
+        <h1>Order Received!</h1>
+        <p class="subtitle">Thank you for choosing Diet Swad. Your order request has been successfully submitted.</p>
+
+        <div class="success-message">
+            <p>Your order details have been recorded. Please complete the payment to confirm your order.</p>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="payment-section">
+            <h2>Next Step: Complete Payment</h2>
+            <p>To confirm your order, please make the payment using UPI:</p>
+
+            <div class="payment-info">
+                <strong>Pay to UPI ID:</strong>
+                <div class="upi-id">8017795017@superyes</div>
+            </div>
+
+            <div class="amount-input-group">
+                <label for="amount">Enter Amount (₹)</label>
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter payment amount"
+                    min="1"
+                    step="1"
+                    inputmode="numeric"
+                >
+                <div class="error-message" id="error-message">Please enter a valid amount</div>
+            </div>
+
+            <button class="pay-button" id="payButton" onclick="initiatePayment()">
+                Pay via UPI
+            </button>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h3>What happens next?</h3>
+            <p>After payment confirmation, our representative will contact you via call or WhatsApp to confirm your order details and arrange delivery.</p>
+        </div>
+
+        <div class="logo-text">Diet Swad</div>
+    </div>
+
+    <script>
+        function initiatePayment() {
+            const amountInput = document.getElementById('amount');
+            const errorMessage = document.getElementById('error-message');
+            const amount = amountInput.value.trim();
+
+            // Validate amount
+            if (!amount || amount <= 0 || isNaN(amount)) {
+                errorMessage.classList.add('show');
+                amountInput.focus();
+                return;
+            }
+
+            errorMessage.classList.remove('show');
+
+            // UPI payment details
+            const upiId = '8017795017@superyes';
+            const payeeName = 'Diet Swad';
+            const currency = 'INR';
+
+            // Create UPI deep link
+            const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=${currency}&tn=${encodeURIComponent('Diet Swad Order Payment')}`;
+
+            // Try to open UPI app
+            window.location.href = upiUrl;
+
+            // Fallback: Show message if UPI app doesn't open
+            setTimeout(() => {
+                alert('If the UPI app did not open, please manually pay ₹' + amount + ' to UPI ID: 8017795017@superyes');
+            }, 2000);
+        }
+
+        // Enable button when amount is entered
+        document.getElementById('amount').addEventListener('input', function() {
+            const payButton = document.getElementById('payButton');
+            const errorMessage = document.getElementById('error-message');
+
+            if (this.value && this.value > 0) {
+                payButton.disabled = false;
+                errorMessage.classList.remove('show');
+            } else {
+                payButton.disabled = true;
+            }
+        });
+
+        // Handle Enter key press
+        document.getElementById('amount').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                initiatePayment();
+            }
+        });
+
+        // Disable button initially
+        document.getElementById('payButton').disabled = true;
+    </script>
+</body>
+</html>
